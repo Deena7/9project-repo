@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_CREDS = credentials('dockerhub-creds')
+        DOCKER_CREDS    = credentials('dockerhub-creds')
         KUBECONFIG_DATA = credentials('k3s-config')
-        IMAGE_NAME   = "deena7/project1"
+        IMAGE_NAME      = "deena7/project1"
     }
 
     stages {
@@ -26,7 +26,11 @@ pipeline {
 
         stage('Login to DockerHub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
+                )]) {
                     sh """
                         echo "$PASS" | docker login -u "$USER" --password-stdin
                     """
@@ -51,14 +55,16 @@ pipeline {
         }
 
         stage('Deploy to K3s') {
-         steps {
-           withCredentials([file(credentialsId: 'k3s-config', variable: 'KCFG')]) {
-             sh """
-                export KUBECONFIG=$KCFG
-                kubectl apply -f deployment.yaml
-                kubectl apply -f service.yaml
-              """
+            steps {
+                withCredentials([file(credentialsId: 'k3s-config', variable: 'KCFG')]) {
+                    sh """
+                        export KUBECONFIG=$KCFG
+                        kubectl apply -f deployment.yaml
+                        kubectl apply -f service.yaml
+                    """
+                }
+            }
         }
     }
-  }
 }
+
