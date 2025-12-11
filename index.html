@@ -1,66 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project One</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY CICD PROJECT - WEB APPLICATION</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-    <nav class="navbar">
-        <h2 class="logo">ProjectOne</h2>
-        <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-    </nav>
-</header>
+    <header class="header">
+        <h1>Welcome to FINAL DEVOPS PROJECT - Web Application</h1>
+        <p>Your modern UI powered by HTML & CSS</p>
+    </header>
 
-<section id="hero" class="hero">
-    <div class="hero-content">
-        <h1>Deploy Better. Faster. Smarter.</h1>
-        <p>A fully automated CI/CD pipeline using Jenkins, Docker & Kubernetes.</p>
-        <a href="#features" class="btn">Explore Features</a>
-    </div>
-</section>
+    <section class="demo" id="demo">
+      <div class="wrap demo-grid">
+        <div class="video-wrap" aria-label="Demo video player">
+          <!-- The poster.jpg file is optional; include for nicer loading UI -->
+          <video id="demoVideo" class="video" preload="metadata" controls playsinline poster="poster.jpg">
+            <!-- If you have other formats, add sources (webm etc). Use your video filename if different -->
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag. <a href="video.mp4" download>Download the video instead</a>.
+            <!-- optional captions -->
+            <!-- <track src="captions.vtt" kind="captions" srclang="en" label="English"> -->
+          </video>
 
-<section id="features" class="features">
-    <h2 class="section-title">Powerful Features</h2>
-    <div class="feature-grid">
-
-        <div class="feature-card">
-            <h3>🚀 Lightning Fast Deployment</h3>
-            <p>Your code instantly builds and deploys using Jenkins & Kubernetes.</p>
+          <!-- custom overlay play button for large screens -->
+          <button id="overlayPlay" class="overlay-play" aria-label="Play demo video">
+            <svg viewBox="0 0 100 100" width="48" height="48" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="rgba(0,0,0,0.5)"/><polygon points="40,30 70,50 40,70" fill="#fff"/></svg>
+          </button>
         </div>
 
-        <div class="feature-card">
-            <h3>🐳 Dockerized Build</h3>
-            <p>All services packaged into lightweight, secure Docker images.</p>
-        </div>
-
-        <div class="feature-card">
-            <h3>⚙️ Fully Automated Pipeline</h3>
-            <p>Push to GitHub → Jenkins builds → Deploy to cluster automatically.</p>
-        </div>
-
-    </div>
-</section>
-
-<section id="about" class="about">
-    <h2>About This Project</h2>
-    <p>
-        This project demonstrates a complete CI/CD pipeline involving GitHub, Jenkins,
-        Docker, DockerHub, and Kubernetes. Every commit triggers a fully automated
-        build-test-deploy workflow with zero downtime updates.
-    </p>
-</section>
-
-<footer>
-    <p>© 2025 ProjectOne — CI/CD Excellence</p>
-</footer>
+        <aside class="info">
+          <h3>How to use</h3>
+          <p>Click play to stream the demo. Video is served from this project folder (`/video.mp4`). If you want faster startup, add a `poster.jpg` image.</p>
+          <h4>Controls</h4>
+          <ol>
+            <li>Play / Pause</li>
+            <li>Seek using progress bar</li>
+            <li>Toggle fullscreen (bottom-right control)</li>
+          </ol>
+          <p class="muted">If playback fails on some browsers, convert your video to an MP4 (H.264) or include a WebM fallback.</p>
+        </aside>
+      </div>
+    </section>
 
 </body>
 </html>
