@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WELCOME TO MY CICD PROJECT - WEB APPLICATION</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Optional: style for the new button */
+        #showVideoBtn {
+            margin: 20px auto;
+            display: block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #0033cc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,29 +27,55 @@
         <p>Your modern UI powered by HTML & CSS</p>
     </header>
 
+    <!-- New Button -->
+    <button id="showVideoBtn">readya guys</button>
+
     <section class="demo" id="demo">
       <div class="wrap demo-grid">
         <div class="video-wrap" aria-label="Demo video player">
-
-          <video id="demoVideo" class="video" preload="metadata" controls playsinline>
+          <!-- The poster.jpg file is optional -->
+          <video id="demoVideo" class="video" preload="metadata" controls playsinline poster="poster.jpg" style="display:none;">
             <source src="video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            Your browser does not support the video tag. 
+            <a href="video.mp4" download>Download the video instead</a>.
           </video>
 
+          <!-- custom overlay play button for large screens -->
+          <button id="overlayPlay" class="overlay-play" aria-label="Play demo video" style="display:none;">
+            <svg viewBox="0 0 100 100" width="48" height="48" aria-hidden="true">
+                <circle cx="50" cy="50" r="48" fill="rgba(0,0,0,0.5)"/>
+                <polygon points="40,30 70,50 40,70" fill="#fff"/>
+            </svg>
+          </button>
         </div>
 
         <aside class="info">
           <h3>How to use</h3>
-          <p>Click play to stream the demo. Video is served from local file `video.mp4`.</p>
+          <p>Click play to stream the demo. Video is served from this project folder (`/video.mp4`).</p>
           <h4>Controls</h4>
           <ol>
             <li>Play / Pause</li>
             <li>Seek using progress bar</li>
-            <li>Fullscreen</li>
+            <li>Toggle fullscreen (bottom-right control)</li>
           </ol>
+          <p class="muted">If playback fails on some browsers, convert your video to an MP4 (H.264) or include a WebM fallback.</p>
         </aside>
       </div>
     </section>
+
+    <script>
+        // When "readya guys" button is clicked, show the video
+        const btn = document.getElementById('showVideoBtn');
+        const video = document.getElementById('demoVideo');
+        const overlay = document.getElementById('overlayPlay');
+
+        btn.addEventListener('click', () => {
+            video.style.display = 'block';      // show the video
+            overlay.style.display = 'block';    // show overlay play button if needed
+            video.play();                        // autoplay video
+            btn.style.display = 'none';         // hide the button after click
+        });
+    </script>
 
 </body>
 </html>
