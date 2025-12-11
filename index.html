@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>CI/CD App</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project One</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Welcome to CI/CD Deployment</h1>
-    <p>This page is deployed using Jenkins → Docker → K3s</p>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo">ProjectOne</h2>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="hero" class="hero">
+    <div class="hero-content">
+        <h1>Deploy Better. Faster. Smarter.</h1>
+        <p>A fully automated CI/CD pipeline using Jenkins, Docker & Kubernetes.</p>
+        <a href="#features" class="btn">Explore Features</a>
+    </div>
+</section>
+
+<section id="features" class="features">
+    <h2 class="section-title">Powerful Features</h2>
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <h3>🚀 Lightning Fast Deployment</h3>
+            <p>Your code instantly builds and deploys using Jenkins & Kubernetes.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🐳 Dockerized Build</h3>
+            <p>All services packaged into lightweight, secure Docker images.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚙️ Fully Automated Pipeline</h3>
+            <p>Push to GitHub → Jenkins builds → Deploy to cluster automatically.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="about" class="about">
+    <h2>About This Project</h2>
+    <p>
+        This project demonstrates a complete CI/CD pipeline involving GitHub, Jenkins,
+        Docker, DockerHub, and Kubernetes. Every commit triggers a fully automated
+        build-test-deploy workflow with zero downtime updates.
+    </p>
+</section>
+
+<footer>
+    <p>© 2025 ProjectOne — CI/CD Excellence</p>
+</footer>
+
 </body>
 </html>
 
