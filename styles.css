@@ -1,129 +1,164 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Arial;
+/* styles.css - High-level, responsive CSS for FINAL DEVOPS PROJECT */
+
+/* -------------------------
+   Variables / Base
+   ------------------------- */
+:root{
+  --bg: #f6f8ff;
+  --card: #ffffff;
+  --accent: #0b62ff;
+  --muted: #6b7280;
+  --glass: rgba(255,255,255,0.6);
+  --radius: 12px;
+  --max-width: 1100px;
+  --gap: 24px;
+  --flow-space: 16px;
 }
 
-body {
-    background: #0f172a;
-    color: white;
-    overflow-x: hidden;
+/* Reset-ish */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif; color:#0f1724; background: linear-gradient(180deg, var(--bg), #eef3ff); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+img,video { max-width:100%; display:block; }
+
+/* -------------------------
+   Layout container
+   ------------------------- */
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px;
 }
 
-/* NAVBAR */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 5%;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    position: fixed;
-    width: 100%;
-    top: 0;
+/* Header */
+.header {
+  text-align: center;
+  padding: 40px 16px;
+  margin-bottom: 12px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, rgba(11,98,255,0.08), rgba(11,98,255,0.02));
+  box-shadow: 0 6px 20px rgba(11,98,255,0.04);
+}
+.header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(20px, 3.2vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+.header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
 }
 
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
+/* -------------------------
+   Demo section grid
+   ------------------------- */
+.demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--gap);
+  align-items: start;
+  padding: 18px;
 }
 
-.navbar a {
-    color: #93c5fd;
-    text-decoration: none;
-    font-weight: 500;
+/* Make layout single-column on small screens */
+@media (max-width: 880px) {
+  .demo-grid { grid-template-columns: 1fr; }
 }
 
-.logo {
-    color: #60a5fa;
+/* Video wrapper (card) */
+.video-wrap {
+  position: relative;
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15,23,36,0.06);
 }
 
-/* HERO SECTION */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    text-align: center;
-    background: radial-gradient(circle at top, #1e3a8a, #0f172a);
+/* Native video element */
+.video {
+  width: 100%;
+  height: auto;
+  display:block;
+  background: #000;
 }
 
-.hero h1 {
-    font-size: 3.2rem;
-    margin-bottom: 15px;
-    color: #bfdbfe;
+/* Overlay play button (centered) */
+.overlay-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity .2s ease;
+  opacity: 0;                /* hidden by default - show on hover */
+  pointer-events: none;      /* allow clicking native controls */
+}
+.video-wrap:hover .overlay-play,
+.video-wrap:focus-within .overlay-play {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.hero p {
-    color: #dbeafe;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
+/* Smaller circle for the svg - accessible focus */
+.overlay-play svg circle { transition: fill .12s ease; }
+.overlay-play:focus { outline: 3px solid rgba(11,98,255,0.18); border-radius: 999px; }
+
+/* Make overlay button visible on small devices always (better tap target) */
+@media (max-width: 600px) {
+  .overlay-play { opacity: 1; pointer-events: auto; }
 }
 
-.btn {
-    padding: 12px 25px;
-    background: #3b82f6;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: 0.3s;
+/* Info panel */
+.info {
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), var(--glass));
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(15,23,36,0.04);
+  color: #0b1726;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.info h3 { margin: 0 0 8px; font-size: 18px; }
+.info h4 { margin-top: 12px; margin-bottom: 6px; font-size: 15px; }
+.info ol { padding-left: 20px; margin-top: 8px; color: var(--muted); }
+
+/* Muted small text */
+.muted { color: var(--muted); font-size: 13px; }
+
+/* -------------------------
+   Utility helpers
+   ------------------------- */
+button { font: inherit; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Accessibility: keyboard-visible focus rings for interactive elements */
+:focus { outline: 3px solid rgba(11,98,255,0.16); outline-offset: 2px; border-radius: 6px; }
+
+/* Small screens spacing tweak */
+@media (max-width: 600px) {
+  .wrap { padding: 18px; }
+  .info { padding: 16px; }
 }
 
-.btn:hover {
-    background: #2563eb;
-}
-
-/* FEATURES */
-.features {
-    padding: 80px 5%;
-    text-align: center;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #93c5fd;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-}
-
-.feature-card {
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    backdrop-filter: blur(25px);
-    transition: 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-/* ABOUT */
-.about {
-    padding: 80px 5%;
-    text-align: center;
-    max-width: 900px;
-    margin: auto;
-}
-
-.about p {
-    line-height: 1.6;
-    color: #dbeafe;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #1e293b;
-    margin-top: 50px;
+/* -------------------------
+   Optional: subtle loading shimmer for poster area
+   ------------------------- */
+.video-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 100%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
